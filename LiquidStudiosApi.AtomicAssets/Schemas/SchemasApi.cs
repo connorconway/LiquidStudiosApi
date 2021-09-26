@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net.Http;
-using LiquidStudiosApi.AtomicAssets.Assets;
+using LiquidStudiosApi.AtomicAssets.Templates;
 using LiquidStudiosApi.Core;
 
 namespace LiquidStudiosApi.AtomicAssets.Schemas

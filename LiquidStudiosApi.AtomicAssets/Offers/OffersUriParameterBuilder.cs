@@ -1,19 +1,12 @@
 ﻿using System.Text;
 
-namespace LiquidStudiosApi.AtomicAssets.Templates
+namespace LiquidStudiosApi.AtomicAssets.Offers
 {
-    public class TemplatesUriParameterBuilder
+    public class OffersUriParameterBuilder
     {
         private string _collectionName;
-        private string _schemaName;
-        private int? _issuedSupply;
-        private int? _minIssuedSupply;
-        private int? _maxIssuedSupply;
-        private bool? _hasAssets;
-        private int? _maxSupply;
-        private bool? _isBurnable;
-        private bool? _isTransferable;
         private string _authorisedAccount;
+        private string _schemaName;
         private string _match;
         private string _collectionBlacklist;
         private string _collectionWhitelist;
@@ -27,133 +20,91 @@ namespace LiquidStudiosApi.AtomicAssets.Templates
         private SortStrategy? _sortStrategy;
         private string _sort;
 
-        public TemplatesUriParameterBuilder WithIssuedSupply(int issuedSupply)
-        {
-            _issuedSupply = issuedSupply;
-            return this;
-        }
-
-        public TemplatesUriParameterBuilder WithMinIssuedSupply(int minIssuedSupply)
-        {
-            _minIssuedSupply = minIssuedSupply;
-            return this;
-        }
-
-        public TemplatesUriParameterBuilder WithMaxIssuedSupply(int maxIssuedSupply)
-        {
-            _maxIssuedSupply = maxIssuedSupply;
-            return this;
-        }
-
-        public TemplatesUriParameterBuilder WithMaxSupply(int maxSupply)
-        {
-            _maxSupply = maxSupply;
-            return this;
-        }
-
-        public TemplatesUriParameterBuilder WithHasAssets(bool hasAssets)
-        {
-            _hasAssets = hasAssets;
-            return this;
-        }
-
-        public TemplatesUriParameterBuilder WithIsBurnable(bool isBurnable)
-        {
-            _isBurnable = isBurnable;
-            return this;
-        }
-
-        public TemplatesUriParameterBuilder WithIsTransferable(bool isTransferable)
-        {
-            _isTransferable = isTransferable;
-            return this;
-        }
-
-        public TemplatesUriParameterBuilder WithCollectionName(string collectionName)
+        public OffersUriParameterBuilder WithCollectionName(string collectionName)
         {
             _collectionName = collectionName;
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithSchemaName(string schemaName)
+        public OffersUriParameterBuilder WithSchemaName(string schemaName)
         {
             _schemaName = schemaName;
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithMatch(string match)
+        public OffersUriParameterBuilder WithMatch(string match)
         {
             _match = match;
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithCollectionBlacklist(string[] collectionBlacklist)
+        public OffersUriParameterBuilder WithCollectionBlacklist(string[] collectionBlacklist)
         {
             _collectionBlacklist = string.Join(",", collectionBlacklist);
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithCollectionWhitelist(string[] collectionWhitelist)
+        public OffersUriParameterBuilder WithCollectionWhitelist(string[] collectionWhitelist)
         {
             _collectionWhitelist = string.Join(",", collectionWhitelist);
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithAuthorisedAccount(string authorisedAccount)
+        public OffersUriParameterBuilder WithAuthorisedAccount(string authorisedAccount)
         {
             _authorisedAccount = authorisedAccount;
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithIds(string[] ids)
+        public OffersUriParameterBuilder WithIds(string[] ids)
         {
             _ids = string.Join(",", ids);
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithLowerBound(string lowerBound)
+        public OffersUriParameterBuilder WithLowerBound(string lowerBound)
         {
             _lowerBound = lowerBound;
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithUpperBound(string upperBound)
+        public OffersUriParameterBuilder WithUpperBound(string upperBound)
         {
             _upperBound = upperBound;
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithBefore(int before)
+        public OffersUriParameterBuilder WithBefore(int before)
         {
             _before = before;
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithAfter(int after)
+        public OffersUriParameterBuilder WithAfter(int after)
         {
             _after = after;
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithPage(int page)
+        public OffersUriParameterBuilder WithPage(int page)
         {
             _page = page;
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithLimit(int limit)
+        public OffersUriParameterBuilder WithLimit(int limit)
         {
             _limit = limit;
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithOrder(SortStrategy sorting)
+        public OffersUriParameterBuilder WithOrder(SortStrategy sorting)
         {
             _sortStrategy = sorting;
             return this;
         }
 
-        public TemplatesUriParameterBuilder WithSort(string sort)
+        public OffersUriParameterBuilder WithSort(string sort)
         {
             _sort = sort;
             return this;
@@ -229,34 +180,6 @@ namespace LiquidStudiosApi.AtomicAssets.Templates
             if (!string.IsNullOrEmpty(_schemaName))
             {
                 parameterString.Append($"&schema_name={_schemaName}");
-            }
-            if (_issuedSupply.HasValue)
-            {
-                parameterString.Append($"&issued_supply={_issuedSupply}");
-            }
-            if (_minIssuedSupply.HasValue)
-            {
-                parameterString.Append($"&min_issued_supply={_minIssuedSupply}");
-            }
-            if (_maxIssuedSupply.HasValue)
-            {
-                parameterString.Append($"&max_issued_supply={_maxIssuedSupply}");
-            }
-            if (_hasAssets.HasValue)
-            {
-                parameterString.Append($"&has_assets={_hasAssets}");
-            }
-            if (_maxSupply.HasValue)
-            {
-                parameterString.Append($"&max_supply={_maxSupply}");
-            }
-            if (_isBurnable.HasValue)
-            {
-                parameterString.Append($"&is_burnable={_isBurnable}");
-            }
-            if (_isTransferable.HasValue)
-            {
-                parameterString.Append($"&is_transferable={_isTransferable}");
             }
 
             return parameterString.ToString();

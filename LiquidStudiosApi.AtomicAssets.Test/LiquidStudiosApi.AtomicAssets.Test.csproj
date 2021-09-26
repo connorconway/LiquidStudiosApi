@@ -17,4 +17,11 @@
     <ProjectReference Include="..\LiquidStudiosApi.AtomicAssets\LiquidStudiosApi.AtomicAssets.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Accounts\" />
+    <Folder Include="Burns\" />
+    <Folder Include="Config\" />
+    <Folder Include="Templates\" />
+  </ItemGroup>
+
 </Project>
