@@ -29,12 +29,12 @@ namespace LiquidStudiosApi.AtomicAssets.Assets
             throw new ArgumentException($"An exception has occurred.");
         }
 
-        public AssetsDto Asset(string assetId)
+        public AssetDto Asset(string assetId)
         {
             var apiRequest = HttpRequestBuilder.GetRequest(AssetUri(assetId)).Build();
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
-                return apiResponse.ContentAs<AssetsDto>();
+                return apiResponse.ContentAs<AssetDto>();
             throw new ArgumentException($"An exception has occurred.");
         }
 
@@ -44,7 +44,7 @@ namespace LiquidStudiosApi.AtomicAssets.Assets
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<StatsDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content}");
         }
 
         public LogsDto AssetLogs(string assetId)
@@ -53,7 +53,7 @@ namespace LiquidStudiosApi.AtomicAssets.Assets
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<LogsDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content}");
         }
 
         public LogsDto AssetLogs(string assetId, AssetsUriParameterBuilder assetsUriParameterBuilder)

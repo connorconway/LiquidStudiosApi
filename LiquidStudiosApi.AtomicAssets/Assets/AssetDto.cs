@@ -2,13 +2,13 @@
 
 namespace LiquidStudiosApi.AtomicAssets.Assets
 {
-    public class AssetsDto
+    public class AssetDto
     {
         [JsonProperty("success")]
         public bool Success { get; set; }
 
         [JsonProperty("data")]
-        public DataDto[] Data { get; set; }
+        public DataDto Data { get; set; }
 
         public class DataDto
         {

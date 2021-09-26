@@ -36,12 +36,12 @@ namespace LiquidStudiosApi.AtomicAssets.Collections
             throw new ArgumentException($"An exception has occurred.");
         }
 
-        public CollectionsDto Collection(string collectionName)
+        public CollectionDto Collection(string collectionName)
         {
             var apiRequest = HttpRequestBuilder.GetRequest(CollectionUri(collectionName)).Build();
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
-                return apiResponse.ContentAs<CollectionsDto>();
+                return apiResponse.ContentAs<CollectionDto>();
             throw new ArgumentException($"An exception has occurred.");
         }
  
@@ -232,11 +232,5 @@ namespace LiquidStudiosApi.AtomicAssets.Collections
         private Uri CollectionUri(string collectionName) => new Uri($"{_requestUriBase}/collections/{collectionName}");
         private Uri CollectionStatsUri(string collectionName) => new Uri($"{_requestUriBase}/collections/{collectionName}/stats");
         private Uri CollectionLogsUri(string collectionName) => new Uri($"{_requestUriBase}/collections/{collectionName}/logs");
-
-        public enum SortStrategy
-        {
-            Ascending,
-            Descending
-        }
     }
 }

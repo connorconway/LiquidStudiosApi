@@ -1,3 +1,4 @@
+using System.Linq;
 using FluentAssertions;
 using LiquidStudiosApi.AtomicAssets.Collections;
 using NUnit.Framework;
@@ -13,28 +14,35 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Collections
             AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Should().BeOfType<CollectionsDto>();
             AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.Should().BeOfType<CollectionsDto.DataDto[]>();
             AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.Should().HaveCountGreaterOrEqualTo(1);
+
+            AtomicAssetsApiFactory.Version1.CollectionsApi.WithOrder(SortStrategy.Ascending).Collections().Should().BeOfType<CollectionsDto>();
+            AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.Should().BeOfType<CollectionsDto.DataDto[]>();
+            AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.Should().HaveCountGreaterOrEqualTo(1);
+
         }
 
         [Test]
         public void Collection()
         {
-            AtomicAssetsApiFactory.Version1.CollectionsApi.Collection("test").Should().BeOfType<CollectionsDto>();
-            AtomicAssetsApiFactory.Version1.CollectionsApi.Collection("test").Data.Should().BeOfType<CollectionsDto.DataDto[]>();
-            AtomicAssetsApiFactory.Version1.CollectionsApi.Collection("test").Data.Should().HaveCountGreaterOrEqualTo(1);
+            var collectionNameToFind = AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.First().CollectionName;
+            AtomicAssetsApiFactory.Version1.CollectionsApi.Collection(collectionNameToFind).Should().BeOfType<CollectionDto>();
+            AtomicAssetsApiFactory.Version1.CollectionsApi.Collection(collectionNameToFind).Data.Should().BeOfType<CollectionDto.DataDto>();
         }
 
         [Test]
         public void CollectionStats()
         {
-            AtomicAssetsApiFactory.Version1.CollectionsApi.CollectionStats("test").Should().BeOfType<StatsDto>();
-            AtomicAssetsApiFactory.Version1.CollectionsApi.CollectionStats("test").Data.Should().BeOfType<StatsDto.DataDto>();
+            var collectionNameToFind = AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.First().CollectionName;
+            AtomicAssetsApiFactory.Version1.CollectionsApi.CollectionStats(collectionNameToFind).Should().BeOfType<StatsDto>();
+            AtomicAssetsApiFactory.Version1.CollectionsApi.CollectionStats(collectionNameToFind).Data.Should().BeOfType<StatsDto.DataDto>();
         }
 
         [Test]
         public void ColectionLogs()
         {
-            AtomicAssetsApiFactory.Version1.CollectionsApi.CollectionLogs("test").Should().BeOfType<LogsDto>();
-            AtomicAssetsApiFactory.Version1.CollectionsApi.CollectionLogs("test").Data.Should().BeOfType<LogsDto.DataDto[]>();
+            var collectionNameToFind = AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.First().CollectionName;
+            AtomicAssetsApiFactory.Version1.CollectionsApi.CollectionLogs(collectionNameToFind).Should().BeOfType<LogsDto>();
+            AtomicAssetsApiFactory.Version1.CollectionsApi.CollectionLogs(collectionNameToFind).Data.Should().BeOfType<LogsDto.DataDto[]>();
         }
 
         [Test]
@@ -50,7 +58,7 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Collections
                 .WithBefore(10)
                 .WithAuthor("me")
                 .WithCollectionBlacklist(new []{"one", "two"})
-                .WithOrder(CollectionsApi.SortStrategy.Ascending)
+                .WithOrder(SortStrategy.Ascending)
                 .BuildCollectionsParameters()
                 .Should()
                 .BeEquivalentTo("?&author=me&collection_blacklist=one,two&before=10&after=1&order=asc");

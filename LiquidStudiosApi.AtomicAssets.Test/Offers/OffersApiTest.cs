@@ -27,7 +27,6 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Offers
             //TODO
             AtomicAssetsApiFactory.Version1.AssetsApi.Asset("1099566952188").Should().BeOfType<AssetsDto>();
             AtomicAssetsApiFactory.Version1.AssetsApi.Asset("1099566952188").Data.Should().BeOfType<AssetsDto.DataDto[]>();
-            AtomicAssetsApiFactory.Version1.AssetsApi.Asset("1099566952188").Data.Should().HaveCount(1);
         }
 
         [Test]

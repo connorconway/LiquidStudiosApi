@@ -1,3 +1,4 @@
+using System.Linq;
 using FluentAssertions;
 using LiquidStudiosApi.AtomicAssets.Assets;
 using NUnit.Framework;
@@ -22,43 +23,26 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Assets
         [Test]
         public void Asset()
         {
-            AtomicAssetsApiFactory.Version1.AssetsApi.Asset("1099566952188").Should().BeOfType<AssetsDto>();
-            AtomicAssetsApiFactory.Version1.AssetsApi.Asset("1099566952188").Data.Should().BeOfType<AssetsDto.DataDto[]>();
-            AtomicAssetsApiFactory.Version1.AssetsApi.Asset("1099566952188").Data.Should().HaveCount(1);
+            var assetIdToFind = AtomicAssetsApiFactory.Version1.AssetsApi.Assets().Data.First().AssetId;
+            AtomicAssetsApiFactory.Version1.AssetsApi.Asset(assetIdToFind).Should().BeOfType<AssetDto>();
+            AtomicAssetsApiFactory.Version1.AssetsApi.Asset(assetIdToFind).Data.Should().BeOfType<AssetDto.DataDto>();
         }
 
         [Test]
         public void AssetStats()
         {
-            AtomicAssetsApiFactory.Version1.AssetsApi.AssetStats("1099566952188").Should().BeOfType<StatsDto>();
-            AtomicAssetsApiFactory.Version1.AssetsApi.AssetStats("1099566952188").Data.Should().BeOfType<StatsDto.DataDto>();
+            var assetIdToFind = AtomicAssetsApiFactory.Version1.AssetsApi.Assets().Data.First().AssetId;
+            AtomicAssetsApiFactory.Version1.AssetsApi.AssetStats(assetIdToFind).Should().BeOfType<StatsDto>();
+            AtomicAssetsApiFactory.Version1.AssetsApi.AssetStats(assetIdToFind).Data.Should().BeOfType<StatsDto.DataDto>();
         }
 
         [Test]
+        [Ignore("This test is failing at the moment as the AtomicAssents endpoint is down. We always receive an Internal Server Error. Add this test back in when their endpoint is working again")]
         public void AssetLogs()
         {
-            AtomicAssetsApiFactory.Version1.AssetsApi.AssetLogs("1099566952188").Should().BeOfType<LogsDto>();
-            AtomicAssetsApiFactory.Version1.AssetsApi.AssetLogs("1099566952188").Data.Should().BeOfType<LogsDto.DataDto>();
-        }
-
-        [Test]
-        public void BuildAssetsParameters()
-        {
-            new AssetsUriParameterBuilder()
-                .Build()
-                .Should()
-                .BeEquivalentTo("?");
-
-            new AssetsUriParameterBuilder()
-                .WithAfter(1)
-                .WithBefore(10)
-                .WithOnlyDuplicateTemplate(true)
-                .WithOwner("me")
-                .WithCollectionBlacklist(new []{"one", "two"})
-                .WithOrder(SortStrategy.Ascending)
-                .Build()
-                .Should()
-                .BeEquivalentTo("?&owner=me&collection_blacklist=one,two&only_duplicate_templates=True&before=10&after=1&order=asc");
+            var assetIdToFind = AtomicAssetsApiFactory.Version1.AssetsApi.Assets().Data.First().AssetId;
+            AtomicAssetsApiFactory.Version1.AssetsApi.AssetLogs(assetIdToFind).Should().BeOfType<LogsDto>();
+            AtomicAssetsApiFactory.Version1.AssetsApi.AssetLogs(assetIdToFind).Data.Should().BeOfType<LogsDto.DataDto>();
         }
     }
 }
