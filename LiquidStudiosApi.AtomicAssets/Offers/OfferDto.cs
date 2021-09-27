@@ -1,22 +1,22 @@
 ﻿using Newtonsoft.Json;
 
-namespace LiquidStudiosApi.AtomicAssets.Transfers
+namespace LiquidStudiosApi.AtomicAssets.Offers
 {
-    public class TransfersDto
+    public class OfferDto
     {
         [JsonProperty("success")]
         public bool Success { get; set; }
 
         [JsonProperty("data")]
-        public DataDto[] Data { get; set; }
+        public DataDto Data { get; set; }
 
         public class DataDto
         {
             [JsonProperty("contract")]
             public string Contract { get; set; }
 
-            [JsonProperty("transfer_id")]
-            public string TransferId { get; set; }
+            [JsonProperty("offer_id")]
+            public string OfferId { get; set; }
 
             [JsonProperty("sender_name")]
             public string SenderName { get; set; }
@@ -27,14 +27,35 @@ namespace LiquidStudiosApi.AtomicAssets.Transfers
             [JsonProperty("memo")]
             public string Memo { get; set; }
 
-            [JsonProperty("assets")]
-            public AssetDto[] Assets { get; set; }
+            [JsonProperty("state")]
+            public int State{ get; set; }
+
+            [JsonProperty("is_sender_contract")]
+            public bool IsSenderContract{ get; set; }
+
+            [JsonProperty("is_recipient_contract")]
+            public bool IsRecipientContract { get; set; }
+
+            [JsonProperty("data")]
+            public object Data { get; set; }
 
             [JsonProperty("created_at_block")]
             public float CreatedAtBlock { get; set; }
 
             [JsonProperty("created_at_time")]
             public float CreatedAtTime { get; set; }
+
+            [JsonProperty("updated_at_block")]
+            public float UpdatedAtBlock { get; set; }
+
+            [JsonProperty("updated_at_time")]
+            public float UpdatedAtTime { get; set; }
+
+            [JsonProperty("sender_assets")]
+            public AssetDto[] SenderAssets { get;set; }
+
+            [JsonProperty("recipient_assets")]
+            public AssetDto[] RecipientAssets { get;set; }
 
             public class AssetDto
             {

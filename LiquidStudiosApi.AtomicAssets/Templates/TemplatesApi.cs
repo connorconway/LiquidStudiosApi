@@ -17,7 +17,7 @@ namespace LiquidStudiosApi.AtomicAssets.Templates
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<TemplatesDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public TemplatesDto Templates(TemplatesUriParameterBuilder templatesUriParameterBuilder)
@@ -26,16 +26,16 @@ namespace LiquidStudiosApi.AtomicAssets.Templates
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<TemplatesDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
-        public TemplatesDto Template(string collectionName, string templateId)
+        public TemplateDto Template(string collectionName, string templateId)
         {
             var apiRequest = HttpRequestBuilder.GetRequest(TemplateUri(collectionName, templateId)).Build();
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
-                return apiResponse.ContentAs<TemplatesDto>();
-            throw new ArgumentException($"An exception has occurred.");
+                return apiResponse.ContentAs<TemplateDto>();
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public StatsDto TemplateStats(string collectionName, string templateId)
@@ -44,7 +44,7 @@ namespace LiquidStudiosApi.AtomicAssets.Templates
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<StatsDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public LogsDto TemplateLogs(string collectionName, string templateId)
@@ -53,7 +53,7 @@ namespace LiquidStudiosApi.AtomicAssets.Templates
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<LogsDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public LogsDto TemplateLogs(string collectionName, string templateId, TemplatesUriParameterBuilder templatesUriParameterBuilder)
@@ -62,14 +62,14 @@ namespace LiquidStudiosApi.AtomicAssets.Templates
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<LogsDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
-        private Uri TemplatesUri() => new Uri($"{_requestUriBase}/schemas");
-        private Uri TemplatesUri(TemplatesUriParameterBuilder templatessUriParameterBuilder) => new Uri($"{_requestUriBase}/schemas{templatessUriParameterBuilder.Build()}");
-        private Uri TemplateUri(string collectionName, string templateId) => new Uri($"{_requestUriBase}/schemas/{collectionName}/{templateId}");
-        private Uri TemplateStatsUri(string collectionName, string templateId) => new Uri($"{_requestUriBase}/schemas/{collectionName}/{templateId}/stats");
-        private Uri TemplateLogsUri(string collectionName, string templateId) => new Uri($"{_requestUriBase}/schemas/{collectionName}/{templateId}/logs");
-        private Uri TemplateLogsUri(string collectionName, string templateId, TemplatesUriParameterBuilder templatesUriParameterBuilder) => new Uri($"{_requestUriBase}/schemas/{collectionName}/{templateId}/logs{templatesUriParameterBuilder.Build()}");
+        private Uri TemplatesUri() => new Uri($"{_requestUriBase}/templates");
+        private Uri TemplatesUri(TemplatesUriParameterBuilder templatessUriParameterBuilder) => new Uri($"{_requestUriBase}/templates{templatessUriParameterBuilder.Build()}");
+        private Uri TemplateUri(string collectionName, string templateId) => new Uri($"{_requestUriBase}/templates/{collectionName}/{templateId}");
+        private Uri TemplateStatsUri(string collectionName, string templateId) => new Uri($"{_requestUriBase}/templates/{collectionName}/{templateId}/stats");
+        private Uri TemplateLogsUri(string collectionName, string templateId) => new Uri($"{_requestUriBase}/templates/{collectionName}/{templateId}/logs");
+        private Uri TemplateLogsUri(string collectionName, string templateId, TemplatesUriParameterBuilder templatesUriParameterBuilder) => new Uri($"{_requestUriBase}/templates/{collectionName}/{templateId}/logs{templatesUriParameterBuilder.Build()}");
     }
 }

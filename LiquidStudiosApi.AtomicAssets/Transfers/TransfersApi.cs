@@ -13,13 +13,23 @@ namespace LiquidStudiosApi.AtomicAssets.Transfers
 
         public TransfersDto Transfers()
         {
-            var apiRequest = HttpRequestBuilder.GetRequest(TransfersUri).Build();
+            var apiRequest = HttpRequestBuilder.GetRequest(TransfersUri()).Build();
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<TransfersDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
-        private Uri TransfersUri => new Uri($"{_requestUriBase}/transfers");
+        public TransfersDto Transfers(TransfersUriParameterBuilder transfersUriParameterBuilder)
+        {
+            var apiRequest = HttpRequestBuilder.GetRequest(TransfersUri(transfersUriParameterBuilder)).Build();
+            var apiResponse = Client.SendAsync(apiRequest).Result;
+            if (apiResponse.IsSuccessStatusCode)
+                return apiResponse.ContentAs<TransfersDto>();
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
+        }
+
+        private Uri TransfersUri() => new Uri($"{_requestUriBase}/transfers");
+        private Uri TransfersUri(TransfersUriParameterBuilder transfersUriParameterBuilder) => new Uri($"{_requestUriBase}/transfers{transfersUriParameterBuilder.Build()}");
     }
 }

@@ -13,7 +13,8 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Collections
         {
             AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Should().BeOfType<CollectionsDto>();
             AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.Should().BeOfType<CollectionsDto.DataDto[]>();
-            AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.Should().HaveCountGreaterOrEqualTo(1);
+            AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.Should().HaveCountGreaterThan(1);
+            AtomicAssetsApiFactory.Version1.CollectionsApi.Collections(new CollectionsUriParameterBuilder().WithLimit(1)).Data.Should().HaveCount(1);
 
             AtomicAssetsApiFactory.Version1.CollectionsApi.Collections(new CollectionsUriParameterBuilder().WithOrder(SortStrategy.Ascending)).Should().BeOfType<CollectionsDto>();
             AtomicAssetsApiFactory.Version1.CollectionsApi.Collections(new CollectionsUriParameterBuilder().WithOrder(SortStrategy.Ascending)).Data.Should().BeOfType<CollectionsDto.DataDto[]>();

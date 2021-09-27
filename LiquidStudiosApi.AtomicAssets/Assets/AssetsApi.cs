@@ -17,7 +17,7 @@ namespace LiquidStudiosApi.AtomicAssets.Assets
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<AssetsDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public AssetsDto Assets(AssetsUriParameterBuilder assetsUriParameterBuilder)
@@ -26,7 +26,7 @@ namespace LiquidStudiosApi.AtomicAssets.Assets
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<AssetsDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public AssetDto Asset(string assetId)
@@ -35,7 +35,7 @@ namespace LiquidStudiosApi.AtomicAssets.Assets
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<AssetDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public StatsDto AssetStats(string assetId)
@@ -44,7 +44,7 @@ namespace LiquidStudiosApi.AtomicAssets.Assets
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<StatsDto>();
-            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content}");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public LogsDto AssetLogs(string assetId)
@@ -53,7 +53,7 @@ namespace LiquidStudiosApi.AtomicAssets.Assets
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<LogsDto>();
-            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content}");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public LogsDto AssetLogs(string assetId, AssetsUriParameterBuilder assetsUriParameterBuilder)
@@ -62,7 +62,7 @@ namespace LiquidStudiosApi.AtomicAssets.Assets
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<LogsDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         private Uri AssetsUri() => new Uri($"{_requestUriBase}/assets");

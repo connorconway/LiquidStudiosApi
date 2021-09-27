@@ -1,28 +1,31 @@
 ﻿using FluentAssertions;
-using LiquidStudiosApi.AtomicAssets.Schemas;
+using LiquidStudiosApi.AtomicAssets.Offers;
 using NUnit.Framework;
 
-namespace LiquidStudiosApi.AtomicAssets.Test.Schemas
+namespace LiquidStudiosApi.AtomicAssets.Test.Offers
 {
-    public class SchemasUriParameterBuilderTest
+    [TestFixture]
+    public class OffersUriParameterBuilderTest
     {
         [Test]
         public void Build()
         {
-            new SchemasUriParameterBuilder()
+            new OffersUriParameterBuilder()
                 .Build()
                 .Should()
                 .BeEquivalentTo("?");
 
-            new SchemasUriParameterBuilder()
+            new OffersUriParameterBuilder()
+                .WithAccountWhitelist("white")
+                .WithAccountBlacklist("black")
+                .WithRecipient("recipient")
+                .WithRecipientAssetWhitelist("reciAssWhitelist")
                 .WithCollectionName("collection")
                 .WithSchemaName("schemaName")
                 .WithAfter(1)
                 .WithBefore(10)
-                .WithMatch("match")
                 .WithCollectionBlacklist(new []{"one", "two"})
                 .WithCollectionWhitelist(new []{"three", "four"})
-                .WithAuthorisedAccount("account")
                 .WithIds(new []{"id1", "id2"})
                 .WithLowerBound("1")
                 .WithUpperBound("5")
@@ -32,7 +35,7 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Schemas
                 .WithOrder(SortStrategy.Ascending)
                 .Build()
                 .Should()
-                .BeEquivalentTo("?&collection_name=collection&match=match&collection_blacklist=one,two&collection_whitelist=three,four&authorized_account=account&ids=id1,id2&lower_bound=1&upper_bound=5&before=10&after=1&page=2&limit=2&order=asc&sort=sort&schema_name=schemaName");
+                .BeEquivalentTo("?recipient=recipientaccount_whitelist=whiteaccount_blacklist=blackrecipient_asset_whitelist=reciAssWhitelist&collection_name=collection&collection_blacklist=one,two&collection_whitelist=three,four&ids=id1,id2&lower_bound=1&upper_bound=5&before=10&after=1&page=2&limit=2&order=asc&sort=sort&schema_name=schemaName");
         }
     }
 }

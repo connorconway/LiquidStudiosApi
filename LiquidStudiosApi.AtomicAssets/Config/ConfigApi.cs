@@ -17,7 +17,7 @@ namespace LiquidStudiosApi.AtomicAssets.Config
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<ConfigDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         private Uri ConfigUri() => new Uri($"{_requestUriBase}/config");

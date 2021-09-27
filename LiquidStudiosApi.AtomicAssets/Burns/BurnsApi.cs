@@ -2,6 +2,7 @@
 
 namespace LiquidStudiosApi.AtomicAssets.Burns
 {
+    //TODO
     public class BurnsApi
     { 
         private readonly string _requestUriBase;

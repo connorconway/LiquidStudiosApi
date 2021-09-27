@@ -17,7 +17,7 @@ namespace LiquidStudiosApi.AtomicAssets.Offers
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<OffersDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public OffersDto Offers(OffersUriParameterBuilder offersUriParameterBuilder)
@@ -26,16 +26,16 @@ namespace LiquidStudiosApi.AtomicAssets.Offers
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<OffersDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
-        public OffersDto Offer(string offerId)
+        public OfferDto Offer(string offerId)
         {
             var apiRequest = HttpRequestBuilder.GetRequest(OfferUri(offerId)).Build();
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
-                return apiResponse.ContentAs<OffersDto>();
-            throw new ArgumentException($"An exception has occurred.");
+                return apiResponse.ContentAs<OfferDto>();
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public LogsDto OfferLogs(string offerId)
@@ -44,7 +44,7 @@ namespace LiquidStudiosApi.AtomicAssets.Offers
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<LogsDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         public LogsDto OfferLogs(string offerId, OffersUriParameterBuilder  schemasUriParameterBuilder)
@@ -53,7 +53,7 @@ namespace LiquidStudiosApi.AtomicAssets.Offers
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
                 return apiResponse.ContentAs<LogsDto>();
-            throw new ArgumentException($"An exception has occurred.");
+            throw new ArgumentException($"An exception has occurred. Status Code: {apiResponse.StatusCode} Error: {apiResponse.Content.ReadAsStringAsync().Result}");
         }
 
         private Uri OffersUri() => new Uri($"{_requestUriBase}/offers");

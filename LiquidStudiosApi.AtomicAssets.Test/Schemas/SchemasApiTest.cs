@@ -13,7 +13,8 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Schemas
         {
             AtomicAssetsApiFactory.Version1.SchemasApi.Schemas().Should().BeOfType<SchemasDto>();
             AtomicAssetsApiFactory.Version1.SchemasApi.Schemas().Data.Should().BeOfType<SchemasDto.DataDto[]>();
-            AtomicAssetsApiFactory.Version1.SchemasApi.Schemas().Data.Should().HaveCountGreaterOrEqualTo(1);
+            AtomicAssetsApiFactory.Version1.SchemasApi.Schemas().Data.Should().HaveCountGreaterThan(1);
+            AtomicAssetsApiFactory.Version1.SchemasApi.Schemas(new SchemasUriParameterBuilder().WithLimit(1)).Data.Should().HaveCount(1);
 
             AtomicAssetsApiFactory.Version1.SchemasApi.Schemas(new SchemasUriParameterBuilder().WithOrder(SortStrategy.Ascending)).Should().BeOfType<SchemasDto>();
             AtomicAssetsApiFactory.Version1.SchemasApi.Schemas(new SchemasUriParameterBuilder().WithOrder(SortStrategy.Ascending)).Data.Should().BeOfType<SchemasDto.DataDto[]>();

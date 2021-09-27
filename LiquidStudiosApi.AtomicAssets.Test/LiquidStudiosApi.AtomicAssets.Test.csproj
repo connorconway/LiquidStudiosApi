@@ -20,7 +20,6 @@
   <ItemGroup>
     <Folder Include="Accounts\" />
     <Folder Include="Burns\" />
-    <Folder Include="Templates\" />
   </ItemGroup>
 
 </Project>
