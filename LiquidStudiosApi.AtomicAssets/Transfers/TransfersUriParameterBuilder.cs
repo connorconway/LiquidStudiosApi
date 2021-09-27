@@ -5,29 +5,41 @@ namespace LiquidStudiosApi.AtomicAssets.Transfers
     //TODO use the correct parameters
     public class TransfersUriParameterBuilder
     {
-        private string _owner;
-        private string _collectionName;
+        private string _account;
+        private string _sender;
+        private string _recipient;
+        private string _assetId;
+        private string _templateId;
         private string _schemaName;
-        private int? _templateId;
-        private string _match;
+        private string _collectionName;
         private string _collectionBlacklist;
         private string _collectionWhitelist;
-        private bool? _onlyDuplicateTemplates;
-        private string _authorisedAccount;
-        private bool? _hideOffers;
-        private string _ids;
-        private string _lowerBound;
-        private string _upperBound;
-        private int? _before;
-        private int? _after;
         private int? _page;
         private int? _limit;
         private SortStrategy? _sortStrategy;
         private string _sort;
 
-        public TransfersUriParameterBuilder WithOwner(string owner)
+        public TransfersUriParameterBuilder WithAccount(string account)
         {
-            _owner = owner;
+            _account = account;
+            return this;
+        }
+
+        public TransfersUriParameterBuilder WithRecipient(string recipient)
+        {
+            _recipient = recipient;
+            return this;
+        }
+
+        public TransfersUriParameterBuilder WithAssetId(string assetId)
+        {
+            _assetId = assetId;
+            return this;
+        }
+
+        public TransfersUriParameterBuilder WithSender(string sender)
+        {
+            _sender = sender;
             return this;
         }
 
@@ -43,15 +55,9 @@ namespace LiquidStudiosApi.AtomicAssets.Transfers
             return this;
         }
 
-        public TransfersUriParameterBuilder WithTemplateId(int templateId)
+        public TransfersUriParameterBuilder WithTemplateId(string templateId)
         {
             _templateId = templateId;
-            return this;
-        }
-
-        public TransfersUriParameterBuilder WithMatch(string match)
-        {
-            _match = match;
             return this;
         }
 
@@ -64,54 +70,6 @@ namespace LiquidStudiosApi.AtomicAssets.Transfers
         public TransfersUriParameterBuilder WithCollectionWhitelist(string[] collectionWhitelist)
         {
             _collectionWhitelist = string.Join(",", collectionWhitelist);
-            return this;
-        }
-
-        public TransfersUriParameterBuilder WithOnlyDuplicateTemplate(bool onlyDuplicateTemplates)
-        {
-            _onlyDuplicateTemplates = onlyDuplicateTemplates;
-            return this;
-        }
-
-        public TransfersUriParameterBuilder WithAuthorisedAccount(string authorisedAccount)
-        {
-            _authorisedAccount = authorisedAccount;
-            return this;
-        }
-
-        public TransfersUriParameterBuilder WithHideOffers(bool hideOffers)
-        {
-            _hideOffers = hideOffers;
-            return this;
-        }
-
-        public TransfersUriParameterBuilder WithIds(string[] ids)
-        {
-            _ids = string.Join(",", ids);
-            return this;
-        }
-
-        public TransfersUriParameterBuilder WithLowerBound(string lowerBound)
-        {
-            _lowerBound = lowerBound;
-            return this;
-        }
-
-        public TransfersUriParameterBuilder WithUpperBound(string upperBound)
-        {
-            _upperBound = upperBound;
-            return this;
-        }
-
-        public TransfersUriParameterBuilder WithBefore(int before)
-        {
-            _before = before;
-            return this;
-        }
-
-        public TransfersUriParameterBuilder WithAfter(int after)
-        {
-            _after = after;
             return this;
         }
 
@@ -142,21 +100,29 @@ namespace LiquidStudiosApi.AtomicAssets.Transfers
         public string Build()
         {
             var parameterString = new StringBuilder("?");
-            if (!string.IsNullOrEmpty(_owner))
+            if (!string.IsNullOrEmpty(_account))
             {
-                parameterString.Append($"&owner={_owner}");
+                parameterString.Append($"&account={_account}");
+            }
+            if (!string.IsNullOrEmpty(_sender))
+            {
+                parameterString.Append($"&sender={_sender}");
+            }
+            if (!string.IsNullOrEmpty(_recipient))
+            {
+                parameterString.Append($"&recipient={_recipient}");
+            }
+            if (!string.IsNullOrEmpty(_assetId))
+            {
+                parameterString.Append($"&asset_id={_assetId}");
+            }
+            if (!string.IsNullOrEmpty(_templateId))
+            {
+                parameterString.Append($"&template_id={_templateId}");
             }
             if (!string.IsNullOrEmpty(_collectionName))
             {
                 parameterString.Append($"&collection_name={_collectionName}");
-            }
-            if (_templateId.HasValue)
-            {
-                parameterString.Append($"&template_id={_templateId}");
-            }
-            if (!string.IsNullOrEmpty(_match))
-            {
-                parameterString.Append($"&match={_match}");
             }
             if (!string.IsNullOrEmpty(_collectionBlacklist))
             {
@@ -165,38 +131,6 @@ namespace LiquidStudiosApi.AtomicAssets.Transfers
             if (!string.IsNullOrEmpty(_collectionWhitelist))
             {
                 parameterString.Append($"&collection_whitelist={_collectionWhitelist}");
-            }
-            if (_onlyDuplicateTemplates.HasValue)
-            {
-                parameterString.Append($"&only_duplicate_templates={_onlyDuplicateTemplates}");
-            }
-            if (!string.IsNullOrEmpty(_authorisedAccount))
-            {
-                parameterString.Append($"&authorized_account={_authorisedAccount}");
-            }
-            if (_hideOffers.HasValue)
-            {
-                parameterString.Append($"&hide_offers={_hideOffers}");
-            }
-            if (!string.IsNullOrEmpty(_ids))
-            {
-                parameterString.Append($"&ids={_ids}");
-            }
-            if (!string.IsNullOrEmpty(_lowerBound))
-            {
-                parameterString.Append($"&lower_bound={_lowerBound}");
-            }
-            if (!string.IsNullOrEmpty(_upperBound))
-            {
-                parameterString.Append($"&upper_bound={_upperBound}");
-            }
-            if (_before.HasValue)
-            {
-                parameterString.Append($"&before={_before}");
-            }
-            if (_after.HasValue)
-            {
-                parameterString.Append($"&after={_after}");
             }
             if (_page.HasValue)
             {
