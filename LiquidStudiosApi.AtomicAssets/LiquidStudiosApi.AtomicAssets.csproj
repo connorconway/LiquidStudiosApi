@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>A C# Wrapper for the Liquid Studios AtomicAssets API. Usage: AtomicAssetsApiFactory.Version1.AssetsApi.Assets();</Description>
+    <Copyright>Connor Conway</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/connorconway/LiquidStudiosApi</RepositoryUrl>
+    <PackageTags>LiquidStudios, AtomicAssets</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
