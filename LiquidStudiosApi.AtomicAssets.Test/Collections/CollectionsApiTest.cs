@@ -15,10 +15,8 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Collections
             AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.Should().BeOfType<CollectionsDto.DataDto[]>();
             AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.Should().HaveCountGreaterOrEqualTo(1);
 
-            AtomicAssetsApiFactory.Version1.CollectionsApi.WithOrder(SortStrategy.Ascending).Collections().Should().BeOfType<CollectionsDto>();
-            AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.Should().BeOfType<CollectionsDto.DataDto[]>();
-            AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.Should().HaveCountGreaterOrEqualTo(1);
-
+            AtomicAssetsApiFactory.Version1.CollectionsApi.Collections(new CollectionsUriParameterBuilder().WithOrder(SortStrategy.Ascending)).Should().BeOfType<CollectionsDto>();
+            AtomicAssetsApiFactory.Version1.CollectionsApi.Collections(new CollectionsUriParameterBuilder().WithOrder(SortStrategy.Ascending)).Data.Should().BeOfType<CollectionsDto.DataDto[]>();
         }
 
         [Test]
@@ -43,25 +41,6 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Collections
             var collectionNameToFind = AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.First().CollectionName;
             AtomicAssetsApiFactory.Version1.CollectionsApi.CollectionLogs(collectionNameToFind).Should().BeOfType<LogsDto>();
             AtomicAssetsApiFactory.Version1.CollectionsApi.CollectionLogs(collectionNameToFind).Data.Should().BeOfType<LogsDto.DataDto[]>();
-        }
-
-        [Test]
-        public void BuildCollectionsParameters()
-        {
-            AtomicAssetsApiFactory.Version1.CollectionsApi
-                .BuildCollectionsParameters()
-                .Should()
-                .BeEquivalentTo("?");
-
-            AtomicAssetsApiFactory.Version1.CollectionsApi
-                .WithAfter(1)
-                .WithBefore(10)
-                .WithAuthor("me")
-                .WithCollectionBlacklist(new []{"one", "two"})
-                .WithOrder(SortStrategy.Ascending)
-                .BuildCollectionsParameters()
-                .Should()
-                .BeEquivalentTo("?&author=me&collection_blacklist=one,two&before=10&after=1&order=asc");
         }
     }
 }

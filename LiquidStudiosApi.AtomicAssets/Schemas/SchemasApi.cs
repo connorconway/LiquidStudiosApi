@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Http;
-using LiquidStudiosApi.AtomicAssets.Templates;
 using LiquidStudiosApi.Core;
 
 namespace LiquidStudiosApi.AtomicAssets.Schemas
@@ -21,7 +20,7 @@ namespace LiquidStudiosApi.AtomicAssets.Schemas
             throw new ArgumentException($"An exception has occurred.");
         }
 
-        public SchemasDto Schemas(TemplatesUriParameterBuilder schemasUriParameterBuilder)
+        public SchemasDto Schemas(SchemasUriParameterBuilder schemasUriParameterBuilder)
         {
             var apiRequest = HttpRequestBuilder.GetRequest(SchemasUri(schemasUriParameterBuilder)).Build();
             var apiResponse = Client.SendAsync(apiRequest).Result;
@@ -30,12 +29,12 @@ namespace LiquidStudiosApi.AtomicAssets.Schemas
             throw new ArgumentException($"An exception has occurred.");
         }
 
-        public SchemasDto Schema(string collectionName, string schemaName)
+        public SchemaDto Schema(string collectionName, string schemaName)
         {
             var apiRequest = HttpRequestBuilder.GetRequest(SchemaUri(collectionName, schemaName)).Build();
             var apiResponse = Client.SendAsync(apiRequest).Result;
             if (apiResponse.IsSuccessStatusCode)
-                return apiResponse.ContentAs<SchemasDto>();
+                return apiResponse.ContentAs<SchemaDto>();
             throw new ArgumentException($"An exception has occurred.");
         }
 
@@ -57,7 +56,7 @@ namespace LiquidStudiosApi.AtomicAssets.Schemas
             throw new ArgumentException($"An exception has occurred.");
         }
 
-        public LogsDto SchemaLogs(string collectionName, string schemaName, TemplatesUriParameterBuilder schemasUriParameterBuilder)
+        public LogsDto SchemaLogs(string collectionName, string schemaName, SchemasUriParameterBuilder schemasUriParameterBuilder)
         {
             var apiRequest = HttpRequestBuilder.GetRequest(SchemaLogsUri(collectionName, schemaName, schemasUriParameterBuilder)).Build();
             var apiResponse = Client.SendAsync(apiRequest).Result;
@@ -67,10 +66,10 @@ namespace LiquidStudiosApi.AtomicAssets.Schemas
         }
 
         private Uri SchemasUri() => new Uri($"{_requestUriBase}/schemas");
-        private Uri SchemasUri(TemplatesUriParameterBuilder schemasUriParameterBuilder) => new Uri($"{_requestUriBase}/schemas{schemasUriParameterBuilder.Build()}");
+        private Uri SchemasUri(SchemasUriParameterBuilder schemasUriParameterBuilder) => new Uri($"{_requestUriBase}/schemas{schemasUriParameterBuilder.Build()}");
         private Uri SchemaUri(string collectionName, string schemaName) => new Uri($"{_requestUriBase}/schemas/{collectionName}/{schemaName}");
         private Uri SchemaStatsUri(string collectionName, string schemaName) => new Uri($"{_requestUriBase}/schemas/{collectionName}/{schemaName}/stats");
         private Uri SchemaLogsUri(string collectionName, string schemaName) => new Uri($"{_requestUriBase}/schemas/{collectionName}/{schemaName}/logs");
-        private Uri SchemaLogsUri(string collectionName, string schemaName, TemplatesUriParameterBuilder schemasUriParameterBuilder) => new Uri($"{_requestUriBase}/schemas/{collectionName}/{schemaName}/logs{schemasUriParameterBuilder.Build()}");
+        private Uri SchemaLogsUri(string collectionName, string schemaName, SchemasUriParameterBuilder schemasUriParameterBuilder) => new Uri($"{_requestUriBase}/schemas/{collectionName}/{schemaName}/logs{schemasUriParameterBuilder.Build()}");
     }
 }

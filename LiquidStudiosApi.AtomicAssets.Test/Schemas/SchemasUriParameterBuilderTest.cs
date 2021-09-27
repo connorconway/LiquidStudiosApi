@@ -1,22 +1,26 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using FluentAssertions;
 using LiquidStudiosApi.AtomicAssets.Collections;
+using LiquidStudiosApi.AtomicAssets.Schemas;
 using NUnit.Framework;
 
-namespace LiquidStudiosApi.AtomicAssets.Test.Collections
+namespace LiquidStudiosApi.AtomicAssets.Test.Schemas
 {
-    public class CollectionsUriParameterBuilderTest
+    public class SchemasUriParameterBuilderTest
     {
         [Test]
         public void Build()
         {
-            new CollectionsUriParameterBuilder()
+            new SchemasUriParameterBuilder()
                 .Build()
                 .Should()
                 .BeEquivalentTo("?");
 
-            new CollectionsUriParameterBuilder()
-                .WithAuthor("me")
-                .WithNotifyAccount("notifythisone")
+            new SchemasUriParameterBuilder()
+                .WithCollectionName("collection")
+                .WithSchemaName("schemaName")
                 .WithAfter(1)
                 .WithBefore(10)
                 .WithMatch("match")
@@ -32,7 +36,7 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Collections
                 .WithOrder(SortStrategy.Ascending)
                 .Build()
                 .Should()
-                .BeEquivalentTo("?&author=me&match=match&authorized_account=account&notify_account=notifythisone&collection_blacklist=one,two&collection_whitelist=three,four&ids=id1,id2&lower_bound=1&upper_bound=5&before=10&after=1&page=2&limit=2&order=asc&sort=sort");
+                .BeEquivalentTo("?&collection_name=collection&match=match&collection_blacklist=one,two&collection_whitelist=three,four&authorized_account=account&ids=id1,id2&lower_bound=1&upper_bound=5&before=10&after=1&page=2&limit=2&order=asc&sort=sort&schema_name=schemaName");
         }
     }
 }
