@@ -37,7 +37,7 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Collections
         }
 
         [Test]
-        public void ColectionLogs()
+        public void CollectionLogs()
         {
             var collectionNameToFind = AtomicAssetsApiFactory.Version1.CollectionsApi.Collections().Data.First().CollectionName;
             AtomicAssetsApiFactory.Version1.CollectionsApi.CollectionLogs(collectionNameToFind).Should().BeOfType<LogsDto>();
