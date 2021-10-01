@@ -12,20 +12,65 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
-- task: NuGetToolInstaller@1
+jobs:
+    - job: Build
+      displayName: 'Build and Test'
+      workspace:
+          clean: all
+      steps:
+        - checkout: self
+          clean: true
+          persistCredentials: true
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+        - task: NuGetCommand@2
+          displayName: 'Restore NuGet packages for build'
+          name: 'Restore'
+          inputs:
+            command: 'restore'
+            restoreSolution: '$(solution)'
+            feedsToUse: 'Config'
+            nugetConfigPath: 'Nuget.Config'
+            externalFeedCredentials: 'Feedz Build Packages Read'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+        - task: MSBuild@1
+          displayName: 'Compile'
+          name: 'Compile'
+          inputs:
+            solution: '$(solution)'
+            configuration: Release
+            clean: true
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+        - task: VSTest@2
+          displayName: 'Run Unit Tests'
+          name: 'UnitTests'
+          inputs:
+            testSelector: 'testAssemblies'
+            testAssemblyVer2: |
+              **\*.Tests.dll
+              **\*.Test.dll
+              **\*.STATests.dll
+              !**\obj\**
+            resultsFolder: '$(Common.TestResultsDirectory)'
+            runInParallel: true
+            failOnMinTestsNotRun: true
+            codeCoverageEnabled: true
+
+        - task: CopyFiles@2
+          displayName: 'Prepare artifacts to publish'
+          inputs:
+            Contents: |
+              $(Build.SourcesDirectory)\*
+            TargetFolder: '$(Build.ArtifactStagingDirectory)\BuildOutput'
+            flattenFolders: true
+            
+        - publish: '$(Build.ArtifactStagingDirectory)\BuildOutput'
+          artifact: 'BuildOutput'
+
+        - task: NuGetCommand@2
+          displayName: 'Create nuget package'
+          inputs:
+            command: 'pack'
+            packagesToPack: '$(Build.SourcesDirectory)\release-scripts\liquid-studios-api.nuspec'
+            packDestination: '$(Build.ArtifactStagingDirectory)\nugetpackage'
+            buildProperties: 'ContentDir=$(Build.ArtifactStagingDirectory)\BuildOutput\'
+          enabled: false
