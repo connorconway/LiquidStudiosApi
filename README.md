@@ -1,6 +1,13 @@
 ﻿# LiquidStudiosApi
- ## Usage
+ ## Build Status
 
+master  
+[![Build Status](https://connorconway.visualstudio.com/LiquidStudiosAPIs/_apis/build/status/Liquid-Studios-Api-CI?branchName=master)](https://connorconway.visualstudio.com/LiquidStudiosAPIs/_build/latest?definitionId=2&branchName=master)  
+
+dev  
+[![Build Status](https://connorconway.visualstudio.com/LiquidStudiosAPIs/_apis/build/status/Liquid-Studios-Api-CI?branchName=dev)](https://connorconway.visualstudio.com/LiquidStudiosAPIs/_build/latest?definitionId=2&branchName=dev)
+
+## Usage
  The entry point to the APIs is in the AtomicAssetsApiFactory. You can initialise any supported API from there.
  You can then call any endpoint from the initialised API.
  Each endpoint has its own set of parameters that you may build up and pass in to the relevant function.
