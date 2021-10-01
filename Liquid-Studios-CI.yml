@@ -30,7 +30,6 @@ jobs:
             restoreSolution: '$(solution)'
             feedsToUse: 'Config'
             nugetConfigPath: 'Nuget.Config'
-            externalFeedCredentials: 'Feedz Build Packages Read'
 
         - task: MSBuild@1
           displayName: 'Compile'
