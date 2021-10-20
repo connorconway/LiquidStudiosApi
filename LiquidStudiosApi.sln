@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquidStudiosApi.AtomicAssets", "LiquidStudiosApi.AtomicAssets\LiquidStudiosApi.AtomicAssets.csproj", "{A1670E4A-B2C0-4540-886D-C23142BF6AAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiquidStudiosApi.AtomicAssets", "LiquidStudiosApi.AtomicAssets\LiquidStudiosApi.AtomicAssets.csproj", "{A1670E4A-B2C0-4540-886D-C23142BF6AAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquidStudiosApi.Core", "LiquidStudiosApi.Core\LiquidStudiosApi.Core.csproj", "{18AB1D5D-705C-4C13-9DEA-1E0137B23F7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiquidStudiosApi.Core", "LiquidStudiosApi.Core\LiquidStudiosApi.Core.csproj", "{18AB1D5D-705C-4C13-9DEA-1E0137B23F7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquidStudiosApi.Core.Test", "LiquidStudiosApi.Core.Test\LiquidStudiosApi.Core.Test.csproj", "{85C976C2-246E-44C4-98ED-4A2BC29D3559}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiquidStudiosApi.Core.Test", "LiquidStudiosApi.Core.Test\LiquidStudiosApi.Core.Test.csproj", "{85C976C2-246E-44C4-98ED-4A2BC29D3559}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquidStudiosApi.AtomicAssets.Test", "LiquidStudiosApi.AtomicAssets.Test\LiquidStudiosApi.AtomicAssets.Test.csproj", "{6FA4B2DE-645C-4316-8524-ECF1DD9A9838}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiquidStudiosApi.AtomicAssets.Test", "LiquidStudiosApi.AtomicAssets.Test\LiquidStudiosApi.AtomicAssets.Test.csproj", "{6FA4B2DE-645C-4316-8524-ECF1DD9A9838}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquidStudiosApi.AtomicMarket", "LiquidStudiosApi.AtomicMarket\LiquidStudiosApi.AtomicMarket.csproj", "{2344482A-E3A8-4B94-8E64-706C06F138CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6FA4B2DE-645C-4316-8524-ECF1DD9A9838}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FA4B2DE-645C-4316-8524-ECF1DD9A9838}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FA4B2DE-645C-4316-8524-ECF1DD9A9838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2344482A-E3A8-4B94-8E64-706C06F138CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2344482A-E3A8-4B94-8E64-706C06F138CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2344482A-E3A8-4B94-8E64-706C06F138CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2344482A-E3A8-4B94-8E64-706C06F138CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
