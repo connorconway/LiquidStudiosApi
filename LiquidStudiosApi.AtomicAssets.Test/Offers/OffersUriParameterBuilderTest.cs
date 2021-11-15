@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using LiquidStudiosApi.AtomicAssets.Offers;
+using LiquidStudiosApi.Core;
 using NUnit.Framework;
 
 namespace LiquidStudiosApi.AtomicAssets.Test.Offers

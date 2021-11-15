@@ -1,8 +1,8 @@
 ﻿using System.Text;
+using LiquidStudiosApi.Core;
 
 namespace LiquidStudiosApi.AtomicAssets.Transfers
 {
-    //TODO use the correct parameters
     public class TransfersUriParameterBuilder
     {
         private string _account;

@@ -1,4 +1,4 @@
-﻿namespace LiquidStudiosApi.AtomicAssets
+﻿namespace LiquidStudiosApi.Core
 {
     public enum SortStrategy
     {

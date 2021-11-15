@@ -1,6 +1,7 @@
 using System.Linq;
 using FluentAssertions;
 using LiquidStudiosApi.AtomicAssets.Collections;
+using LiquidStudiosApi.Core;
 using NUnit.Framework;
 
 namespace LiquidStudiosApi.AtomicAssets.Test.Collections

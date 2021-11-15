@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using FluentAssertions;
 using LiquidStudiosApi.AtomicAssets.Offers;
+using LiquidStudiosApi.Core;
 using NUnit.Framework;
 
 namespace LiquidStudiosApi.AtomicAssets.Test.Offers
@@ -29,7 +30,7 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Offers
         }
 
         [Test]
-        [Ignore("This test is failing at the moment as the AtomicAssents endpoint is down. We always receive an Internal Server Error. Add this test back in when their endpoint is working again")]
+        [Ignore("This test is failing at the moment as the AtomicAssets endpoint is down. We always receive an Internal Server Error. Add this test back in when their endpoint is working again")]
 
         public void OfferLogs()
         {

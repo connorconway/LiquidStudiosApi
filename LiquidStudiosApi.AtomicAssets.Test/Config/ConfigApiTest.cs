@@ -11,6 +11,7 @@ namespace LiquidStudiosApi.AtomicAssets.Test.Config
         public void Config()
         {
             AtomicAssetsApiFactory.Version1.ConfigApi.Config().Should().BeOfType<ConfigDto>();
+            AtomicAssetsApiFactory.Version1.ConfigApi.Config().Data.Should().BeOfType<ConfigDto.DataDto>();
         }
     }
 }
