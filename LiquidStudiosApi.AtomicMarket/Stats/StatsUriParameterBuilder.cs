@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using LiquidStudiosApi.Core;
 
-namespace LiquidStudiosApi.AtomicMarket.BuyOffers
+namespace LiquidStudiosApi.AtomicMarket.Stats
 {
-    public class BuyOffersUriParameterBuilder : IUriParameterBuilder
+    public class StatsUriParameterBuilder : IUriParameterBuilder
     {
         private string _state;
         private int? _maxAssets;
@@ -42,217 +42,217 @@ namespace LiquidStudiosApi.AtomicMarket.BuyOffers
         private SortStrategy? _sortStrategy;
         private string _sort;
 
-        public BuyOffersUriParameterBuilder WithState(params State[] states)
+        public StatsUriParameterBuilder WithState(params State[] states)
         {
             _state = string.Join(",", states);
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithMaxAssets(int maxAssets)
+        public StatsUriParameterBuilder WithMaxAssets(int maxAssets)
         {
             _maxAssets = maxAssets;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithMinAssets(int minAssets)
+        public StatsUriParameterBuilder WithMinAssets(int minAssets)
         {
             _minAssets = minAssets;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithShowSellerContracts(bool showSellerContracts)
+        public StatsUriParameterBuilder WithShowSellerContracts(bool showSellerContracts)
         {
             _showSellerContracts = showSellerContracts;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithContractWhitelist(bool contractWhitelist)
+        public StatsUriParameterBuilder WithContractWhitelist(bool contractWhitelist)
         {
             _contractWhitelist = contractWhitelist;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithSellerBlacklist(bool sellerBlacklist)
+        public StatsUriParameterBuilder WithSellerBlacklist(bool sellerBlacklist)
         {
             _sellerBlacklist = sellerBlacklist;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithAssetId(int assetId)
+        public StatsUriParameterBuilder WithAssetId(int assetId)
         {
             _assetId = assetId;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithMarketplace(string marketplace)
+        public StatsUriParameterBuilder WithMarketplace(string marketplace)
         {
             _marketplace = marketplace;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithMakerMarketplace(string makerMarketplace)
+        public StatsUriParameterBuilder WithMakerMarketplace(string makerMarketplace)
         {
             _makerMarketplace = makerMarketplace;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithTakerMarketplace(string takerMarketplace)
+        public StatsUriParameterBuilder WithTakerMarketplace(string takerMarketplace)
         {
             _takerMarketplace = takerMarketplace;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithSymbol(string symbol)
+        public StatsUriParameterBuilder WithSymbol(string symbol)
         {
             _symbol = symbol;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithSeller(string seller)
+        public StatsUriParameterBuilder WithSeller(string seller)
         {
             _seller = seller;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithBuyer(string buyer)
+        public StatsUriParameterBuilder WithBuyer(string buyer)
         {
             _buyer = buyer;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithMinPrice(int minPrice)
+        public StatsUriParameterBuilder WithMinPrice(int minPrice)
         {
             _minPrice = minPrice;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithMaxPrice(int maxPrice)
+        public StatsUriParameterBuilder WithMaxPrice(int maxPrice)
         {
             _maxPrice = maxPrice;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithMinTemplateMint(int minTemplateMint)
+        public StatsUriParameterBuilder WithMinTemplateMint(int minTemplateMint)
         {
             _minTemplateMint = minTemplateMint;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithMaxTemplateMint(int maxTemplateMint)
+        public StatsUriParameterBuilder WithMaxTemplateMint(int maxTemplateMint)
         {
             _maxTemplateMint = maxTemplateMint;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithOwner(string owner)
+        public StatsUriParameterBuilder WithOwner(string owner)
         {
             _owner = owner;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithBurned(bool burned)
+        public StatsUriParameterBuilder WithBurned(bool burned)
         {
             _burned = burned;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithCollectionName(string collectionName)
+        public StatsUriParameterBuilder WithCollectionName(string collectionName)
         {
             _collectionName = collectionName;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithSchemaName(string schemaName)
+        public StatsUriParameterBuilder WithSchemaName(string schemaName)
         {
             _schemaName = schemaName;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithTemplateId(string templateId)
+        public StatsUriParameterBuilder WithTemplateId(string templateId)
         {
             _templateId = templateId;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithIsTransferable(bool isTransferable)
+        public StatsUriParameterBuilder WithIsTransferable(bool isTransferable)
         {
             _isTransferable = isTransferable;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithIsBurnable(bool isBurnable)
+        public StatsUriParameterBuilder WithIsBurnable(bool isBurnable)
         {
             _isBurnable = isBurnable;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithMatch(string match)
+        public StatsUriParameterBuilder WithMatch(string match)
         {
             _match = match;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithCollectionBlacklist(string[] collectionBlacklist)
+        public StatsUriParameterBuilder WithCollectionBlacklist(string[] collectionBlacklist)
         {
             _collectionBlacklist = string.Join(",", collectionBlacklist);
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithCollectionWhitelist(string[] collectionWhitelist)
+        public StatsUriParameterBuilder WithCollectionWhitelist(string[] collectionWhitelist)
         {
             _collectionWhitelist = string.Join(",", collectionWhitelist);
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithIds(string[] ids)
+        public StatsUriParameterBuilder WithIds(string[] ids)
         {
             _ids = string.Join(",", ids);
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithLowerBound(string lowerBound)
+        public StatsUriParameterBuilder WithLowerBound(string lowerBound)
         {
             _lowerBound = lowerBound;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithUpperBound(string upperBound)
+        public StatsUriParameterBuilder WithUpperBound(string upperBound)
         {
             _upperBound = upperBound;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithBefore(int before)
+        public StatsUriParameterBuilder WithBefore(int before)
         {
             _before = before;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithAfter(int after)
+        public StatsUriParameterBuilder WithAfter(int after)
         {
             _after = after;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithPage(int page)
+        public StatsUriParameterBuilder WithPage(int page)
         {
             _page = page;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithLimit(int limit)
+        public StatsUriParameterBuilder WithLimit(int limit)
         {
             _limit = limit;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithOrder(SortStrategy sorting)
+        public StatsUriParameterBuilder WithOrder(SortStrategy sorting)
         {
             _sortStrategy = sorting;
             return this;
         }
 
-        public BuyOffersUriParameterBuilder WithSort(string sort)
+        public StatsUriParameterBuilder WithSort(string sort)
         {
             _sort = sort;
             return this;

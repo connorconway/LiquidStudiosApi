@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Http;
-using LiquidStudiosApi.AtomicMarket.Sales;
 using LiquidStudiosApi.Core;
 
 namespace LiquidStudiosApi.AtomicMarket.MarketPlaces

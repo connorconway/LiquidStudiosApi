@@ -1,4 +1,4 @@
-﻿namespace LiquidStudiosApi.AtomicMarket.Sales
+﻿namespace LiquidStudiosApi.AtomicMarket
 {
     public enum State : ushort
     {
