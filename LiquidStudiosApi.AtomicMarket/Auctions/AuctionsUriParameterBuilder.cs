@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using LiquidStudiosApi.Core;
 
 namespace LiquidStudiosApi.AtomicMarket.Auctions
@@ -44,7 +45,7 @@ namespace LiquidStudiosApi.AtomicMarket.Auctions
 
         public AuctionsUriParameterBuilder WithState(params State[] states)
         {
-            _state = string.Join(",", states);
+            _state = string.Join(",", Array.ConvertAll(states, value => (int) value));
             return this;
         }
 
